@@ -27,6 +27,7 @@ class LoadingButton @JvmOverloads constructor(
     private var downloadCircleProgress = 0f
     private var buttonColor = ResourcesCompat.getColor(resources, R.color.colorPrimary, null)
     private val progressColor = ResourcesCompat.getColor(resources, R.color.colorPrimaryDark, null)
+    private val circleColor = ResourcesCompat.getColor(resources, R.color.colorAccent, null)
 
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         textSize = 55.0f
@@ -41,6 +42,10 @@ class LoadingButton @JvmOverloads constructor(
 
     private val inProgressBackgroundPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         color = progressColor
+    }
+
+    private val inProgressArcPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+        color = circleColor
     }
 
     private var buttonState: ButtonState by Delegates.observable<ButtonState>(ButtonState.Completed) { p, old, new ->
@@ -104,6 +109,25 @@ class LoadingButton @JvmOverloads constructor(
         if (buttonState == ButtonState.Loading) {
             var progressVal = downloadProgress * measuredWidth.toFloat()
             canvas?.drawRoundRect(0f, 0f, progressVal, height, corner, corner, inProgressBackgroundPaint)
+
+            val arcDiameter = corner * 5
+            val arcRectSize = measuredHeight.toFloat() - paddingBottom.toFloat() - arcDiameter
+
+            progressVal = downloadProgress * 360f
+            val textWidth = paint.measureText(buttonText)
+            val textSize = 20f
+
+            canvas?.save()
+            canvas?.translate(widthSize / 2 + textWidth / 2 + textSize/2, 0f)
+            canvas?.drawArc(paddingStart + arcDiameter,
+                paddingTop.toFloat() + arcDiameter,
+                arcRectSize,
+                arcRectSize,
+                0f,
+                progressVal,
+                true,
+                inProgressArcPaint)
+            canvas?.restore()
         }
         val centerX = measuredWidth.toFloat() / 2
         val centerY = measuredHeight.toFloat() / 2 - rect.centerY()
