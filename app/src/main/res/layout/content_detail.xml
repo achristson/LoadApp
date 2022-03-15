@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.motion.widget.MotionLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    app:layoutDescription="@xml/details"
+    tools:context=".DetailActivity"
+    tools:showIn="@layout/activity_detail">
+
+
+    <TextView
+        android:id="@+id/file_name_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/filename_label"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/status_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.448" />
+
+    <TextView
+        android:id="@+id/status_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="428dp"
+        android:text="@string/status_label"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/return_button"
+        app:layout_constraintStart_toStartOf="@+id/file_name_label" />
+
+    <Button
+        android:id="@+id/return_button"
+        android:layout_width="295dp"
+        android:layout_height="56dp"
+        android:background="@color/colorAccent"
+        android:text="@string/button_text"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        tools:layout_editor_absoluteX="58dp"
+        tools:layout_editor_absoluteY="675dp" />
+
+    <TextView
+        android:id="@+id/file_name_value"
+        android:layout_width="188dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginBottom="52dp"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/status_value"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.407"
+        app:layout_constraintStart_toEndOf="@+id/file_name_label"
+        app:layout_constraintTop_toTopOf="@+id/file_name_label"
+        tools:text="@string/glide_radio_text" />
+
+    <TextView
+        android:id="@+id/status_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="104dp"
+        android:textSize="18sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/status_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/status_label"
+        tools:text="Success" />
+</androidx.constraintlayout.motion.widget.MotionLayout>
